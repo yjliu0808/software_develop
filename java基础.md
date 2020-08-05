@@ -2,12 +2,12 @@
 
 #### 1.基础知识
 
-##### 1.1java编译运行过程
+1.1java编译运行过程
 
 1.1编译器(.java源文件,经过编译,生成.class字节码文件)
 1.2运行期：JVM加载.class文件并运行.class文件
 
-##### 1.2JVM、JRE、JDK的关系：
+1.2JVM、JRE、JDK的关系：
 
 2.1JVM：是java虚拟机
 
@@ -19,14 +19,14 @@
 - 运行java程序的最小的环境为JRE
 - 开发java程序的最小的环境为JRE
 
-##### 1.3变量命名规则：
+1.3变量命名规则：
 
 - 只能包含字母、数字、_和$符，并且不能以数字开头
 - 严格区分大小写
 - 不能使用关键字
 - 驼峰命名法
 
-##### 1.4变量初始化及使用
+1.4变量初始化及使用
 
 - 当变量作为作为类成员使用时，Java才确保给定其初始值，防止程序运行时错误
   （成员变量在使用之前如果没有初始化，jvm就会帮我们初始化，）
@@ -175,16 +175,17 @@ new Integer(123) 与 Interger.valueOf(123)区别在于：
   }
   ```
   
+
 编译器会在自动装箱过程中调用valueOf()方法，因此多个值相同且值在缓存池范围内的Integer实例使用自动装箱来创建，那么就会引用相同的对象。
-  
+
 ```java
   Integer m=123;
   Integer n=123;
   System.out.println(m==n);//true
-  ```
-  
+```
+
 基本类型对应的缓冲池如下：
-  
+
 - boolean values true and false
 
 - all byte values
@@ -204,4 +205,89 @@ new Integer(123) 与 Interger.valueOf(123)区别在于：
 string 被申明为final,因此它不可继承.(Integer等包装类也不能被继承)
 
 value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 String 内部没有改变 value 数组的方法，因此可以保证 String 不可变。 
+
+#### 8.for循环
+
+- 1.格式：for(初始化语句1;条件判断语句2;循环体执行之后的语句4){循环体3}
+  2.执行流程1 —>2—>3—>4 —>2—>3—>4—>2false(结束)
+
+- 增强for循环:for(数据类型 变量名：数组或者集合名){}
+
+- 求和思想
+
+  ```java
+  int sum=0;
+  for(int i=1;i<=100;i++){
+  sum+=i
+  }
+  System.out.println(sum);
+  ```
+
+- while格式:
+  初始化语句1
+  while(条件判断语句2){循环体3;循环体之后的语句4;}
+  执行顺序：和for是一样；1—>2—>3—>4—>2—>3—>4—>2false(结束)
+
+- do while格式：
+  初始化语句1
+  do{循环体3;循环体之后的语句4;}while(条件判断语句2);
+  特点：do whlie至少会执行一次循环体
+
+- 循环控制语句
+  continue //跳出本次循环，继续下次循环
+  break //跳出全部循环
+
+- 嵌套循环
+
+  ```java
+  for(int i=1;i<=4;i++){
+       for(int j=1;j<=5;j++){
+            System.out.print("*");
+       } 
+    System.out.println();
+  }
+  ```
+
+- 条件控制语句
+  格式1：if(){}
+  格式2：if()else{}
+  格式3：if()else if(){}else if(){}else{}
+  格式4：if()if()if()else{}//和格式3区别：主要满足条件就进if，不存在互斥
+
+  ```
+  eg:
+  ```
+
+- switch格式：
+  switch(值)值的类型:byte、short、int、char、String、枚举
+  switch什么时候结束，遇到break和}
+  break穿透：没有遇到break,不会再次进行case匹配
+
+  ```java
+  switch(值){
+      case 值1:
+          语句;
+          break;
+      case 值1:
+          语句;
+          break;
+      default:
+          语句;
+     		break; 
+      }
+  ```
+
+- 遍历数组
+- 冒泡排序
+- 打印等边三角形
+
+
+
+
+
+
+
+
+
+
 
