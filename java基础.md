@@ -1,5 +1,7 @@
 ### Java知识整理
 
+总结：E:\Reository\software_develop\pics\java基础知识点总结.xmind
+
 #### 1.基础知识
 
 1.1java编译运行过程
@@ -417,10 +419,10 @@ public class MyTest {
    4. 一个父类可以有多个子类，一个子类只能有一个父类----单一继承
 
 - 2.继承具有传递性
-   
+  
    1. java规定:构造子类之前必须先构造父类
    2. 在子类构造中若不调用父类的构造，则默认super()调父类的无参构造，
-     若子类构造中调用父类构造了，则不再默认提供
+       若子类构造中调用父类构造了，则不再默认提供
   3. super()调用父类构造必须位于子类构造的第一句;
      super:指代当前对象的父类对象
   4. super的用法:
@@ -430,12 +432,12 @@ public class MyTest {
   5. 非私有的属性方法可以调用
 
 - 3.向上造型:
-   
+  
    1. 父类型的引用指向子类的对象
 2. 能点出来什么，看引用的类型
    
 - 4.访问控制修饰符:
-   
+  
    1. public:公开的，任何类
    2. private:私有的，本类
    3. protected:受保护的，本类、子类、同包类
@@ -472,14 +474,14 @@ public class MyTest {
      
 
 - 6.static final常量:
-   
+  
    1. 必须声明的同时初始化
    2. 通过类名点来访问，不能被修改
    3. 建议:常量名所有字母都大写
 4. 编译器在编译时被自动替换为具体的值，效率高
    
 - 7.abstract修饰
-   
+  
    1. 抽象方法:1)由abstract修饰
       - 只有方法的定义，没有具体的实现(连大括号都没有)
   2. 抽象类:
@@ -491,9 +493,9 @@ public class MyTest {
       - 为所有子类提供一种统一的类型----向上造型
       - 可以包含抽象方法，为所有子类提供了统一的入口
       - 子类的具体实现不同，但定义是一致的
-   
+  
 - 8.接口:
-   
+  
    1. 遵守这个标准就能干某件事------API
    2. 接口也是一种数据类型(引用类型)
    3. 由interface定义，只能包含常量和抽象方法
@@ -507,7 +509,8 @@ public class MyTest {
       ------行为的多态:cut(),run()...
   2. 同一个对象，被造型为不同的类型时，有不同的功能
        ------对象的多态:我、你、水...
--  向上造型:
+  3. 
+-  10向上造型:
    1. 父类型的引用指向子类的对象
    2. 能造型成的类型: 父类+所实现的接口
    3. 能点出来什么，看引用的类型
@@ -517,3 +520,230 @@ public class MyTest {
    7. 不符合那两种条件则转换失败，发生ClassCastException类型转换异常
    8. 建议在强转之前使用instanceof判断引用指向的对象是否是该类型
 
+#### 12.String  引用类型
+
+字符串的 == 判断和isEmpty 前者地址比较，后者只是判断内容为空
+== 和equals 的区别
+
+String-----重写了equals ,一般引用数据类型都用这个方法比较是否一致
+
+附加
+
+#### 1.properties文件
+
+properties文件：项目当中比较常见的配置文件。
+	特点：以键值对的形式保存数据
+	作用：通过将系统配置定义在properties文件的形式来实现代码解耦。
+	解析：
+	Properties properties = new Properties();
+	File file = new File("log4j.properties");
+	InputStream inStream = new FileInputStream(file);
+	properties.load(inStream);
+获取：
+	properties结构：跟map一样是属于字典类型的数据结构。
+	取数据：properties.getProperty(key)。
+
+#### 2.IO流
+
+​	流向：
+​		输入流 read  读
+​			InputStream
+​			FileInputStream
+​			FileReader
+​		输出流 write 写
+​			OutputStream
+​			FileOutputStream
+​			FileWriter
+​	类型
+​		字节流（读写任意文件）
+​			FileInputStream
+​			FileOutputStream
+​		字符流（只能读写纯文本文件）中文
+​			FileReader
+​			FileWriter 
+​	关流
+​		用完之后关闭流。
+​	File                  FileInputStream（读）   FileOutputStream（写）
+​	编译时异常
+​		如果不处理，代码就报错。IO异常。
+​		必须要处理。未雨绸缪。
+​		如何处理：
+​			1、throws Exception 往外抛出异常。
+​				
+​			2、try ｛
+​				//可能会报错的代码
+​			｝ catch 捕获异常 ｛
+​				//异常出现之后处理方式
+​			｝
+​			//。。。。 剩下的代码能够继续执行。
+​	运行时异常
+​		只有在运行时才有肯能会出现的异常。
+​		NullPotionException
+​		IndexOutOfBoundsException
+​		ClassCaseException 
+
+
+
+#### 3.xml（了解）
+
+​	XML：Extensible Markup Language,扩展性标记语言 HTML
+​	特点：
+​		可扩展性，在遵循xml语法的前提下支持自定义和修改。
+​	<?xml version="1.0" encoding="utf-8"?>  		xml声明
+​	<person id="1" > 								根元素，它是所有其他元素的父元素	
+​		<name>
+​			<firstname>zhang</firstname>
+​			<lastname>san</lastname>
+​		</name>
+​		
+​		<name xxx= />
+​		<age>23</age>
+​		<gender>男</gender>
+​	</person>
+​	根标签有且只能有一个。
+​	所有元素有开始就有结束 
+​	大小写是敏感的
+​	嵌套使用需要注意嵌套的顺序
+​	元素的属性值必须要用“”引起来
+​	注释：<!--此处为注释-->
+​	
+​	dom4j解析技术
+​		1、添加依赖：dom4j
+​		2、创建解析器SaxReader对象
+​		3、获取document对象
+​		4、获取根元素
+​		5、获取根元素下的子元素
+
+#### 4.excel 解析	
+
+POI技术
+		Apache POI是Apache软件基金会的开放源码函式库，POI提供API给Java程序对Microsoft Office格式档案读和写的功能。
+	maven坐标
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
+		</dependency>
+
+​	读：
+​		// 1、找到excel
+​		File file = new File("src/test/resources/student.xls");
+​		// 1.1、打开了excel
+​		Workbook workbook = WorkbookFactory.create(file);
+​		// 2、选择sheet
+​		Sheet sheet = workbook.getSheetAt(0);
+​		// 3、遍历row
+​		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+​			// 4、获取row
+​			Row row = sheet.getRow(i); // ctrl + 2 + l
+​			Cell idCell = row.getCell(0, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+​			idCell.setCellType(CellType.STRING);
+​			Cell nameCell = row.getCell(1, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+​			nameCell.setCellType(CellType.STRING);
+​			Cell ageCell = row.getCell(2, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+​			ageCell.setCellType(CellType.STRING);
+​			System.out.println(idCell.getStringCellValue() + "," + nameCell.getStringCellValue() + ","
+					+ ageCell.getStringCellValue());
+		}
+	
+	写：
+		// 1、找到excel
+		//输入流 把文件读入到java内存中
+		FileInputStream fis = new FileInputStream("src/test/resources/student.xls");
+		// 1.1、打开了excel
+		Workbook workbook = WorkbookFactory.create(fis);
+		// 2、选择sheet
+		Sheet sheet = workbook.getSheetAt(0);
+		Row row = sheet.getRow(1);
+		Cell cell = row.getCell(1, MissingCellPolicy.CREATE_NULL_AS_BLANK);
+		cell.setCellType(CellType.STRING);
+		cell.setCellValue("张三2");
+		//输出流，把java内存中的内容写到文件中
+		FileOutputStream fos = new FileOutputStream("src/test/resources/student.xls");
+		workbook.write(fos);
+		fos.close();	
+
+#### 5.testng测试框架
+
+简介：	testng是一个单元测试框架，它提供了一系列的丰富注解（标签）
+	来帮助我们很方便的编写和管理被测项目的测试类和测试方法，
+	而且功能比junit更强大，支持依赖测试，忽略测试，异常测试，超时测试，分组测试等多种测试场景。
+	坐标：
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.11</version>
+			<scope>test</scope>
+		</dependency>
+2、testng.xml
+	suite元素：测试套件（测试类的集合）
+	test元素：测试模块
+	classes：测试类集合
+	class：测试类的路径
+	在项目的根目录底下创建testng.xml
+	一个suite（套件）由一个或多个测试模块构成
+	一个test（测试）是由多个类组成
+
+​	testng.xml 执行测试用例时首先按照class排序执行，class里面方法按照英文自然排序执行。
+​	
+
+#### 6.注解
+
+dependsOnMethods 测试方法依赖于某方法
+	@Test(enabled = false)
+4、常用注解
+	配置注解的作用：用于完成测试前的准备工作
+	@BeforeSuite/@AfterSuite 标记的方法：在某个测试套件（suite）开始之前运行/在某个测试套件所有测试方法执行之后运行
+	@BeforeTest/@AfterTest标记的方法： 在某个测试（test）开始之前运行/在某个测试下的所有测试类中的测试方法执行之后运行
+	@BeforeClass/@AfterClass标记的方法：在某个测试类（class）开始之前运行/在某个测试类中的所有测试方法执行之后运行
+	@BeforeMethod/@AfterMethod标记的方法： 在某个测试方法（method）之前运行/在某个测试方法执行之后运行	
+
+5、重点掌握注解！！！！！
+	@DataProvider	数据支持
+	注意：
+		1、使用此注解的方法的返回值必须是：Object[][] 或者 Iterator<Object[]>！！！！！！
+		2、参数个数！！！！类型！！！！必须匹配
+		3、可以接受集合、自定义类型
+
+#### 7.参数化测试(数据驱动测试)
+
+a、testng.xml定义parameter
+		<parameter name="host" value="http://localhost/"></parameter>
+		<parameter name="browserType" value="firefox"></parameter>
+		配合 @Parameters(value={"browserType"}) 一起使用
+		局限性：通过parameters注入的参数必须定义在testng.xml中
+	b、DataProviders
+		利用此注解标注一个方法，注解需指定一个name属性。方法返回值为一个Object类型的二维数组。
+		注入dataprovider的数据时，test方法必须声明此dataprovider属性，值为前面定义处的name值。
+		使用dataprovider时，若没有声明则为方法名。在测试方法上引用此dataprovider时需要指向对应的name值
+		@DataProvider(name="datas")
+		public Object [][] dataProvider(){
+			//...
+		}
+		@Test(dataProvider="datas")
+		public void test2(String p1...){
+			//...
+		}
+		优点：可传入普通的参数重复测试相同的接口
+
+#### 8.HTTP协议
+
+http://testingpai.com/article/1595507271953
+
+1、分为客户端请求和服务端响应，无状态的协议。
+		2、HTTP协议重点包含报文。
+		报文：
+			URL：接口地址
+			method：接口的请求方式
+			（接口的功能决定请求方式。例如：查询是get。增加是post，删除delete，全部更新put，部分更新：patch）
+			头部字段：
+				描述请求或者响应的详细信息。
+				Content-Type
+			状态码：
+				100	请求中 
+				200	正确
+				300	缓存、重定向
+				400 客户端问题
+				500	服务端问题
+	
+	
